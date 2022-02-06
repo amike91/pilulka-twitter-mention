@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use App\Exceptions\PilulkaMentionsFetchException;
@@ -11,7 +13,6 @@ use App\Services\Twitter;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
 
 class PilulkaMentionsCommand extends Command implements Arrayable {
@@ -38,9 +39,9 @@ class PilulkaMentionsCommand extends Command implements Arrayable {
             $this->processMentionData();
             $this->sortMentionsFromNewest();
         } catch (TwitterApiException|GuzzleException $exception) {
-            throw new PilulkaMentionsFetchException("Error fetching data from Twitter.");
+            throw new PilulkaMentionsFetchException('Error fetching data from Twitter.');
         } catch (\Exception $exception) {
-            throw new PilulkaMentionsGeneralException("General error processing mentions.");
+            throw new PilulkaMentionsGeneralException('General error processing mentions.');
         }
 
     }
@@ -61,7 +62,7 @@ class PilulkaMentionsCommand extends Command implements Arrayable {
      * @throws TwitterApiException|GuzzleException
      */
     protected function fetchMentions() {
-        $query                  = "#pilulka OR #pilulkacz OR (has:links pilulka.cz)";
+        $query                  = '#pilulka OR #pilulkacz OR (has:links pilulka.cz)';
 
         $this->rawMentionData  = collect($this->twitter->getRecentTweets($query));
     }

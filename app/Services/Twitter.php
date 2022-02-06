@@ -15,8 +15,8 @@ use Psr\Http\Message\ResponseInterface;
 class Twitter {
     protected HttpClient $httpClient;
 
-    protected string $bearerToken   = "";
-    protected string $baseApiUrl    = "https://api.twitter.com/2";
+    protected string $bearerToken   = '';
+    protected string $baseApiUrl    = 'https://api.twitter.com/2';
 
     public function __construct() {
         $this->httpClient       = new HttpClient;
@@ -73,7 +73,7 @@ class Twitter {
      * @throws GuzzleException|TwitterApiException
      */
     public function getRecentTweets(string $query) {
-        $endpoint           = "/tweets/search/recent";
+        $endpoint           = '/tweets/search/recent';
         $params             = [
             'query'             => $query,
             'max_results'       => 100,
