@@ -1,7 +1,7 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-4">
-            <a href="{{ $mention->getUrl() }}" target="_blank"><img src="{{ $mention->getAuthor()->getAvatarUrl() }}" class="img-fluid w-100 rounded-start"></a>
+            <a href="{{ $mention->getUrl() }}" target="_blank"><img src="{{ $mention->getAuthor()->getLargerAvatarUrl() }}" class="img-fluid w-100 rounded-start"></a>
         </div>
         <div class="col-md-8">
             <div class="card-body">

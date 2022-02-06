@@ -81,6 +81,17 @@ class User implements Arrayable {
         return $this->avatarUrl;
     }
 
+    /**
+     * By default, Twitter API v2 returns a rather low-resolution avatar.
+     * By removing "_normal" from the URL, one gets a higher resolution
+     * user avatar. Discovered by a chance.
+     *
+     * @return string
+     */
+    public function getLargerAvatarUrl() : string {
+        return str_replace("_normal", "", $this->getAvatarUrl());
+    }
+
     public function setAvatarUrl(string $avatarUrl) : self {
         $this->avatarUrl        = $avatarUrl;
         return $this;
