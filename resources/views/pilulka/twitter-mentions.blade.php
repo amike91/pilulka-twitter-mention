@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="col-6 offset-md-3 pt-5">
-        <h1 class="text-center pb-3">Mentions</h1>
+        <h1 class="text-center pb-3">Pilulka - Twitter mentions</h1>
 
         @if($error)
             <div class="alert alert-danger" role="alert">
