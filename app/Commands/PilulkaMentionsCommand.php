@@ -61,7 +61,7 @@ class PilulkaMentionsCommand extends Command implements Arrayable {
      * @throws TwitterApiException|GuzzleException
      */
     protected function fetchMentions() {
-        $query                  = "#pilulka OR #pilulkacz";
+        $query                  = "#pilulka OR #pilulkacz OR (has:links pilulka.cz)";
 
         $this->rawMentionData  = collect($this->twitter->getRecentTweets($query));
     }

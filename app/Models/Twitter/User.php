@@ -114,6 +114,17 @@ class User implements Arrayable {
         return $this;
     }
 
+    public function getUrl() : string {
+        $base       = "https://twitter.com";
+
+        $parts      = [
+            $base,
+            $this->getUsername(),
+        ];
+
+        return implode("/", $parts);
+    }
+
     public function toArray() {
         return [
             'id'            => $this->getId(),

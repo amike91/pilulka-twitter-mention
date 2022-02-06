@@ -55,6 +55,16 @@ class Post implements Arrayable {
         return $this;
     }
 
+    public function getUrl() : string {
+        $parts      = [
+            $this->getAuthor()->getUrl(),
+            "status",
+            $this->getId(),
+        ];
+
+        return implode("/", $parts);
+    }
+
     public function toArray() {
         return [
             'id'            => $this->getId(),
