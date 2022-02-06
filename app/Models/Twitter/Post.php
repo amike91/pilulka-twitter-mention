@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models\Twitter;
 
 use Carbon\Carbon;
@@ -55,6 +57,12 @@ class Post implements Arrayable {
         return $this;
     }
 
+    /**
+     * Since Twitter doesn't seem to return a URL to the Post,
+     * we generate one to the best of our ability.
+     *
+     * @return string
+     */
     public function getUrl() : string {
         $parts      = [
             $this->getAuthor()->getUrl(),

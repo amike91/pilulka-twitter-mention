@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Exceptions\TwitterApiException;
@@ -51,6 +53,9 @@ class Twitter {
 
 
     /**
+     * Sends a request to the API with Bearer Token in the Authorization
+     * header.
+     *
      * @throws GuzzleException
      */
     private function sendApiRequest(string $endpoint, string $method, array $queryParams = []) : ResponseInterface {
@@ -88,6 +93,6 @@ class Twitter {
             throw new TwitterApiException($exception->getMessage());
         }
 
-        return json_decode($result->getBody(), true);
+        return json_decode((string) $result->getBody(), true);
     }
 }

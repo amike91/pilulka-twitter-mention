@@ -15,6 +15,13 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Collection;
 
+/**
+ * Gets the latest mentions of Pilulka's hashtags and  website URL from Twitter.
+ * Result is sorted by posting date in the descending order (newest first).
+ *
+ * Uses Twitter Service with Twitter API v2 underneath.
+ *
+ */
 class PilulkaMentionsCommand extends Command implements Arrayable {
     protected Twitter $twitter;
 
@@ -31,6 +38,10 @@ class PilulkaMentionsCommand extends Command implements Arrayable {
 
 
     /**
+     * Fetches mentions using Twitter Service, transforms the data into
+     * Twitter Post and User objects in a collection, sorts it from
+     * newest to oldest Post.
+     *
      * @throws PilulkaMentionsFetchException|PilulkaMentionsGeneralException
      */
     public function execute() {
@@ -59,6 +70,9 @@ class PilulkaMentionsCommand extends Command implements Arrayable {
     }
 
     /**
+     * Fetches mentions from Twitter. Query:
+     * '#pilulka OR #pilulkacz OR (has:links pilulka.cz)'
+     *
      * @throws TwitterApiException|GuzzleException
      */
     protected function fetchMentions() {
@@ -68,7 +82,8 @@ class PilulkaMentionsCommand extends Command implements Arrayable {
     }
 
     /**
-     * Takes an array of "raw" mentions data and "objectifies" it.
+     * Takes an array of "raw" mentions data and transform it into
+     * a collection of Twitter Post and User objects.
      *
      * @return void
      */

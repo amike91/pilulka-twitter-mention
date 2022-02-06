@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Models\Twitter;
 
@@ -114,6 +116,12 @@ class User implements Arrayable {
         return $this;
     }
 
+    /**
+     * Since Twitter doesn't seem to return a URL to the User,
+     * we generate one to the best of our ability.
+     *
+     * @return string
+     */
     public function getUrl() : string {
         $base       = "https://twitter.com";
 
